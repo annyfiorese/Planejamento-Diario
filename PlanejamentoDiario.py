@@ -1,4 +1,5 @@
 import time
+from datetime import date
 from tkinter.simpledialog import askstring
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -32,7 +33,15 @@ driver = webdriver.Chrome()
 driver.implicitly_wait(10)
 
 try:
+    #Data de hoje
+    hoje = date.today()
     
+    #Definindo data fim e formatando
+    datafim = hoje.strftime("%d%m%Y")
+    
+    #Decrementando 119 dias da data atual para ter a data inicio
+    
+    print(hoje)
     #Chamado condigo do menu de login e navegação
     executar_navegação(driver)
     
@@ -56,11 +65,11 @@ try:
     executar_geral_documento(driver)
     
     time.sleep(40)
-    resposta = 0
-    while resposta != 1:
-        time.sleep(40)
-        resposta = askstring("Informações", "Os relatorios foram baixados? \n 1-Sim || 2-Não")
-    
+    resposta = ""
+    while resposta not in ["1", "Sim", "sim", "SIM"]:  
+        time.sleep(40)  # Delay for 40 seconds
+        resposta = askstring("Informações", "Os relatórios foram baixados?\n1 - Sim\n2 - Não")
+        
     #validation = askstring("Informações", "Automação irá finalizar!! se tudo estiver correto digite 1")
 
 finally:
