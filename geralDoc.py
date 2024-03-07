@@ -91,7 +91,7 @@ def executar_geral_documento(driver):
         mensagem = "gerar doc - geral doc"
         encontrar_elemento_e_clicar(driver, "MainContentPlaceHolder_cphMainColumn_btnShowOptions", 300)
 
-        time.sleep(400)
+        time.sleep(300)
         
         # Encontrar campo de formato excel
         procurandoelement_xpath = '//*[@id="MainContentPlaceHolder_cphMainColumn_btnRelXls"]'
