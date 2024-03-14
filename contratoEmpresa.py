@@ -30,24 +30,6 @@ def executar_contrato_empresa(driver):
         selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_003_ddlCombo", "0001")
         driver.implicitly_wait(10)
         
-        # Encontrando campo contratos vencidos há 
-        campo_contratos_vencidos = WebDriverWait(driver, 20).until(
-            EC.visibility_of_element_located(
-                (By.ID, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_006_tbxEdit"))
-        )
-        # Insira o texto no contratos vencidos 
-        campo_contratos_vencidos.send_keys("10000")
-        
-        # Encontrando campo contratos vencendo em  
-        campo_contratos_vencendo = WebDriverWait(driver, 20).until(
-            EC.visibility_of_element_located(
-                (By.ID, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_007_tbxEdit"))
-        )
-        # Insira o texto no contratos vencendo em  
-        campo_contratos_vencendo.send_keys("10000")
-        
-        driver.implicitly_wait(30)
-        
         # Localize o  campo data inicio de inclusão para setar o data inicio
         campo_datainicio_nome = WebDriverWait(driver, 60).until(
             EC.presence_of_element_located((By.NAME, "ctl00$ctl00$MainContentPlaceHolder$cphMainColumn$tbxFiltro_008$mskEdit"))
@@ -60,7 +42,26 @@ def executar_contrato_empresa(driver):
         # Inserir data no campo data inicio de inclusão
         campo_datainicio_nome.send_keys("01042017")
         
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(30)
+        
+        # Encontrando campo contratos vencidos há 
+        campo_contratos_vencidos = WebDriverWait(driver, 30).until(
+            EC.visibility_of_element_located(
+                (By.ID, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_006_tbxEdit"))
+        )
+        # Insira o texto no contratos vencidos 
+        campo_contratos_vencidos.send_keys("10000")
+        
+        # Encontrando campo contratos vencendo em  
+        campo_contratos_vencendo = WebDriverWait(driver, 30).until(
+            EC.visibility_of_element_located(
+                (By.ID, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_007_tbxEdit"))
+        )
+        # Insira o texto no contratos vencendo em  
+        campo_contratos_vencendo.send_keys("10000")
+        
+        driver.implicitly_wait(30)
+        
         # Adicione uma pausa de 3 segundos
         time.sleep(4)
         

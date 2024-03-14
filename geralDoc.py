@@ -89,44 +89,36 @@ def executar_geral_documento(driver):
         
         # Encontrar campo de gerar documento
         mensagem = "gerar doc - geral doc"
-        encontrar_elemento_e_clicar(driver, "MainContentPlaceHolder_cphMainColumn_btnShowOptions", 300)
+        encontrar_elemento_e_clicar(driver, "MainContentPlaceHolder_cphMainColumn_btnShowOptions", 60)
 
-        time.sleep(300)
+        time.sleep(150)
         
+        mensagem = "formato excel - geral doc"
         # Encontrar campo de formato excel
-        procurandoelement_xpath = '//*[@id="MainContentPlaceHolder_cphMainColumn_btnRelXls"]'
-
-        tempo_limite = 500
+        elemento_visualizador = WebDriverWait(driver, 250).until(
+            EC.visibility_of_element_located((By.ID, "MainContentPlaceHolder_cphMainColumn_btnRelXls"))
+        )
+        elemento_visualizador.click()
         
-        tempo_inicial = time.time()
+        mensagem = "pop-up - geral doc"
+        # Encontrar o x para fechar o pop-up de download
+        elemento_visualizador = WebDriverWait(driver, 150).until(
+           
+            EC.visibility_of_element_located((By.ID, "MainContentPlaceHolder_cphMainColumn_btnCloseOptions"))
+        )
+        elemento_visualizador.click()
         
-        while time.time() - tempo_inicial < tempo_limite:
-            try:
-                elemento = driver.find_element(By.XPATH, procurandoelement_xpath)
-                break
-            except NoSuchElementException:   
-                time.sleep(2)
-      
-      # Encontrar campo de Pop-Up
-        elementPopUp_xpath = '//*[@id="MainContentPlaceHolder_cphMainColumn_btnCloseOptions"]'
-
-        tempo_limite = 300
-        
-        tempo_inicial = time.time()
-        
-        while time.time() - tempo_inicial < tempo_limite:
-            try:
-                elemento = driver.find_element(By.XPATH, elementPopUp_xpath)
-                break
-            except NoSuchElementException:   
-                time.sleep(2) 
-                
         driver.implicitly_wait(10)
+        
+        
+        # Encontrar o x para fechar o pop-up de download
+        
+        
+        encontrar_elemento_e_clicar(driver, "MainContentPlaceHolder_cphMainColumn_btnCloseOptions", 150)
     
-        # Adicione uma pausa de 3 segundos
-        time.sleep(7)
-             
+        
+        driver.implicitly_wait(10)
         
     except Exception as e:
         print(f"Erro: {mensagem}. Detalhes: {str(e)}")
-        # Adicione tratamento adequado para o erro, como registrar ou levantar uma exceção personalizada
+        

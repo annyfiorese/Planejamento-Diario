@@ -1,5 +1,5 @@
 import time
-from datetime import date
+from datetime import date, timedelta
 from tkinter.simpledialog import askstring
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -35,23 +35,20 @@ driver.implicitly_wait(10)
 try:
     #Data de hoje
     hoje = date.today()
-    
-    #Definindo data fim e formatando
+    #Definindo e formatando data fim de vigencia que é o dia atual
     datafim = hoje.strftime("%d%m%Y")
     
-    #Decrementando 119 dias da data atual para ter a data inicio
-    
-    print(hoje)
+    #Decrementando 119 dias da data atual para ter a data inicio da vigencia
+    datainicio = hoje - timedelta(days=119)
+    #Definindo data fim e formatando
+    datainicio = datainicio.strftime("%d%m%Y")
+      
     #Chamado condigo do menu de login e navegação
     executar_navegação(driver)
-    
-    #Solicitando informação de data inicio de inclusão e final 
-    datainicio = askstring("Informações", "Digite a data de início da incluisão(DDMMYYYY):")
-    datafim = askstring("Informações", "Digite a data de final de inclusão (DDMMYYYY):")
-    
+
     #Chamando codigo de extração do relatorio de NEXA BRASIL- Documentos Lançados via WEB
     executar_lancamento_web(driver, datainicio, datafim)
-    time.sleep(20)
+    time.sleep(10)
      
     #Chamando codigo de extração de relatorio NEXA -Histórico de Lançamento de Documento via WEB
     executar_historico_web(driver, datainicio, datafim)
@@ -64,13 +61,12 @@ try:
     #Chamando codigo de extação do relatorio NEXA BRASIL - Relatório Geral de Documentos
     executar_geral_documento(driver)
     
-    time.sleep(40)
+    time.sleep(200)
     resposta = ""
     while resposta not in ["1", "Sim", "sim", "SIM"]:  
-        time.sleep(40)  # Delay for 40 seconds
+        time.sleep(120)  #120' seconds
         resposta = askstring("Informações", "Os relatórios foram baixados?\n1 - Sim\n2 - Não")
-        
-    #validation = askstring("Informações", "Automação irá finalizar!! se tudo estiver correto digite 1")
+    
 
 finally:
     driver.implicitly_wait(10)

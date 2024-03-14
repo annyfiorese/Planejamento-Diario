@@ -22,23 +22,20 @@ def executar_historico_web(driver, datainicio, datafim):
     try:
         mensagem = "historico web"
         # Encontrar campo de reletorio para selecionar NEXA -Histórico de Lançamento de Documento via WEB
-        selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_ddlRelatorio_ddlCombo", "428")
+        selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_ddlRelatorio_ddlCombo", "1215")
         
         # Encontrar campo de Grupo terceiro e selecionar Grupo geral  
         selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_003_ddlCombo", "0001")
         
-        # Encontrar campo de status e selecionar todos 
-        selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_007_ddlCombo", "1")
-        
-        # Encontrar campo de prestadores ativos e seleci0nar Apresentar ativos e inativos
-        selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_012_ddlCombo", "0")
-        
         # Encontrar campo de tipo de doc e selecionar todos 
-        selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_013_ddlCombo", "2")
+        selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_005_ddlCombo", "0")
+        
+        # Encontrar campo de prestadores ativos e selecionar Apresentar ativos e inativos
+        selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_012_ddlCombo", "0")
 
-        # Localize o  campo data inicio de inclusão para setar o data inicio
+        # Localize o campo data inicio de inclusão para setar o data inicio
         campo_datainicio_nome = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.NAME, "ctl00$ctl00$MainContentPlaceHolder$cphMainColumn$tbxFiltro_005$mskEdit"))
+            EC.presence_of_element_located((By.NAME, "ctl00$ctl00$MainContentPlaceHolder$cphMainColumn$tbxFiltro_009$mskEdit"))
             )
 
         # Aplicar um clique triplo no campo data inicio de inclusão
@@ -50,7 +47,7 @@ def executar_historico_web(driver, datainicio, datafim):
         
         # Localize o  campo data inicio de inclusão para setar o data dim
         campo_datafim_nome = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.NAME, "ctl00$ctl00$MainContentPlaceHolder$cphMainColumn$tbxFiltro_006$mskEdit"))
+            EC.presence_of_element_located((By.NAME, "ctl00$ctl00$MainContentPlaceHolder$cphMainColumn$tbxFiltro_010$mskEdit"))
             )
 
         # Aplicar um clique triplo no campo data fim de inclusão
@@ -76,7 +73,7 @@ def executar_historico_web(driver, datainicio, datafim):
         
         # Encontrar campo de formato excel
         mensagem = "formato excel - historico web"
-        elemento_visualizador = WebDriverWait(driver, 400).until(
+        elemento_visualizador = WebDriverWait(driver, 250).until(
             EC.visibility_of_element_located((By.ID, "MainContentPlaceHolder_cphMainColumn_btnRelXls"))
         )
         elemento_visualizador.click()
