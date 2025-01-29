@@ -24,7 +24,7 @@ def executar_contrato_empresa(driver):
         mensagem = "contrato empresa"
         # Encontrar campo de reletorio para selecionar NEXA BRASIL - Contratos por Empresa
         selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_ddlRelatorio_ddlCombo", "511")
-        driver.implicitly_wait(10)
+        
         
         # Encontrar campo de Grupo terceiro e selecionar Grupo geral  
         selecionar_opcao_com_tentativa(driver, "MainContentPlaceHolder_cphMainColumn_tbxFiltro_003_ddlCombo", "0001")
